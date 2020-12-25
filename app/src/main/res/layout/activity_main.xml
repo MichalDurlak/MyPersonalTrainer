@@ -10,13 +10,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/imageFilterView"
+
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="223dp"
         android:layout_height="267dp"
         android:layout_margin="20dp"
         android:layout_weight="1"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/logo" />
 
     <EditText
         android:id="@+id/input_Login"

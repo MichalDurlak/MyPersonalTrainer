@@ -1,5 +1,6 @@
 package com.example.mypersonaltrainer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -33,7 +34,10 @@ class MainActivity : AppCompatActivity() {
         }
 
     btn_Register.setOnClickListener(){
-setContentView(R.layout.activity_register)
+
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+
     }
 
     }
