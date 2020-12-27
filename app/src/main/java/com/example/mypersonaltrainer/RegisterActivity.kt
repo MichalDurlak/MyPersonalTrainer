@@ -3,6 +3,7 @@ package com.example.mypersonaltrainer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -27,28 +28,17 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        /*  Var for users */
-
-        // val uid = null
-        val uname = input_RegisterLogin.text
-//        val usurname = input_Register.text
-        val upassword = input_RegisterPassword.text
-        val uemail = input_RegisterEmail.text
-        val uage = input_RegisterAge.text
-        val uweight = input_RegisterWeight.text
 
 
 
 
 
-        val db = UserDB(this)
-//        db.insertIntoUser()
 
-//"NAME = $uname \n PASSWORD = $upassword \n EMAIL = $uemail \n AGE = $uage \n WEIGHT = $uweight \n"
 
-        btn_RegisterRegister.setOnClickListener(){
+        btn_RegisterRegister.setOnClickListener {
+            view ->
 
-            Toast.makeText(applicationContext, "NAME = $uname \n PASSWORD = $upassword \n EMAIL = $uemail \n AGE = $uage \n WEIGHT = $uweight \n ", Toast.LENGTH_LONG).show()
+            addRecord(view)
 
         }
 
@@ -61,4 +51,47 @@ class RegisterActivity : AppCompatActivity() {
         }
 
     }
+
+
+
+    fun addRecord(view: View){
+        val uname = input_RegisterLogin.text.toString()
+        val upassword = input_RegisterPassword.text.toString()
+        val uemail = input_RegisterEmail.text.toString()
+        val uage = input_RegisterAge.text.toString()
+        val uweight = input_RegisterWeight.text.toString()
+
+
+
+        val userDB: UserDB = UserDB(this)
+
+        if (!uname.isEmpty() && !upassword.isEmpty() && !uemail.isEmpty() && !uage.isNullOrEmpty() && !uweight.isNullOrEmpty()){
+            val status =
+                    userDB.addUser(UserModel(0,uname,upassword,uemail,uage,uweight))
+
+
+            if (status > -1){
+                Toast.makeText(applicationContext, "User has been saved",Toast.LENGTH_LONG).show()
+                input_RegisterLogin.text.clear()
+                input_RegisterPassword.text.clear()
+                input_RegisterAgainPassword.text.clear()
+                input_RegisterEmail.text.clear()
+                input_RegisterAge.text.clear()
+                input_RegisterWeight.text.clear()
+
+                val intent: Intent = Intent(applicationContext,MainActivity::class.java)
+
+                startActivity(intent)
+
+            }
+
+
+
+
+        } else {
+            Toast.makeText(applicationContext, "Cant create an account, because there are empty forms",Toast.LENGTH_LONG).show()
+
+        }
+    }
+
 }
