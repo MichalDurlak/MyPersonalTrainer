@@ -36,9 +36,31 @@ class RegisterActivity : AppCompatActivity() {
 
 
         btn_RegisterRegister.setOnClickListener {
-            view ->
 
-            addRecord(view)
+
+
+            val checkpasswordone = input_RegisterPassword.text.toString()
+            val checkpasswordtwo = input_RegisterAgainPassword.text.toString()
+
+            if (checkpasswordone == checkpasswordtwo){
+
+
+                addRecord()
+
+
+
+            } else {
+
+                Toast.makeText(applicationContext, "Password doesn't mach",Toast.LENGTH_LONG).show()
+                input_RegisterPassword.text.clear()
+                input_RegisterAgainPassword.text.clear()
+
+
+
+            }
+
+
+
 
         }
 
@@ -50,16 +72,26 @@ class RegisterActivity : AppCompatActivity() {
 
         }
 
+
     }
 
 
+    fun addRecord(){
 
-    fun addRecord(view: View){
+
+
+
         val uname = input_RegisterLogin.text.toString()
         val upassword = input_RegisterPassword.text.toString()
         val uemail = input_RegisterEmail.text.toString()
         val uage = input_RegisterAge.text.toString()
         val uweight = input_RegisterWeight.text.toString()
+        var usex : String
+        if (rdbWomen.isChecked()){
+            usex = "Woman"
+        } else {
+            usex = "Man"
+        }
 
 
 
@@ -67,7 +99,7 @@ class RegisterActivity : AppCompatActivity() {
 
         if (!uname.isEmpty() && !upassword.isEmpty() && !uemail.isEmpty() && !uage.isNullOrEmpty() && !uweight.isNullOrEmpty()){
             val status =
-                    userDB.addUser(UserModel(0,uname,upassword,uemail,uage,uweight))
+                    userDB.addUser(UserModel(0,uname,upassword,uemail,uage,uweight,usex))
 
 
             if (status > -1){

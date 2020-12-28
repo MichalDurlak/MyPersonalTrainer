@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity() {
 
             } else {
                 Toast.makeText(applicationContext, "Checking login and password", Toast.LENGTH_LONG).show()
+                val loginInputTry : String = input_Login.text.toString()
+                val passwordInputTry : String = input_Password.text.toString()
+
+
             }
         }
 
@@ -43,13 +47,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-        btnTest.setOnClickListener(){
-
-
-
-
-            }
 
 
 

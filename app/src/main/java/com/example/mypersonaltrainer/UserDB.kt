@@ -25,6 +25,7 @@ class UserDB(context : Context) :
         private const val KEY_EMAIL = "email"
         private const val KEY_AGE = "age"
         private const val KEY_WEIGHT = "weight"
+        private const val KEY_SEX = "sex"
 
     }
 
@@ -33,7 +34,7 @@ class UserDB(context : Context) :
         val CREATE_TABLE_USERS = ("CREATE TABLE " + TABLE_USERS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
                 + KEY_PASSWORD + " TEXT," + KEY_EMAIL + " TEXT,"
-                + KEY_AGE + " TEXT," + KEY_WEIGHT + " TEXT" + ")")
+                + KEY_AGE + " TEXT," + KEY_WEIGHT  + " TEXT," + KEY_SEX + " TEXT" + ")")
         db?.execSQL(CREATE_TABLE_USERS)
     }
 
@@ -56,6 +57,7 @@ class UserDB(context : Context) :
         contentValues.put(KEY_EMAIL, emp.uemail)
         contentValues.put(KEY_AGE, emp.uage)
         contentValues.put(KEY_WEIGHT, emp.uweight)
+        contentValues.put(KEY_SEX, emp.usex)
 
         val success = db.insert(TABLE_USERS,null,contentValues)
 
@@ -89,6 +91,7 @@ class UserDB(context : Context) :
         var uemail: String
         var uage: String
         var uweight: String
+        var usex: String
 
         if (cursor.moveToFirst()){
             do {
@@ -98,8 +101,9 @@ class UserDB(context : Context) :
                 uemail = cursor.getString(cursor.getColumnIndex(KEY_EMAIL))
                 uage = cursor.getString(cursor.getColumnIndex(KEY_AGE))
                 uweight = cursor.getString(cursor.getColumnIndex(KEY_WEIGHT))
+                usex = cursor.getString(cursor.getColumnIndex(KEY_SEX))
 
-                val user = UserModel(uid = uid, uname = uname, upassword = upassword, uemail = uemail, uage=uage, uweight = uweight)
+                val user = UserModel(uid = uid, uname = uname, upassword = upassword, uemail = uemail, uage=uage, uweight = uweight, usex = usex)
                 usersList.add(user)
 
             } while (cursor.moveToNext())
@@ -125,6 +129,7 @@ class UserDB(context : Context) :
         contentValues.put(KEY_EMAIL, emp.uemail)
         contentValues.put(KEY_AGE, emp.uage)
         contentValues.put(KEY_WEIGHT, emp.uweight)
+        contentValues.put(KEY_SEX, emp.usex)
 
         val success = db.update(TABLE_USERS, contentValues, KEY_ID + "=" + emp.uid, null)
 
