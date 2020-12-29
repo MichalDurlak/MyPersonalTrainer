@@ -151,6 +151,41 @@ class UserDB(context : Context) :
 
     }
 
+    fun checkUser(ulogin: String, upassword: String): Boolean {
 
+        // array of columns to fetch
+        val columns = arrayOf(KEY_ID)
 
+        val db = this.readableDatabase
+
+        // selection criteria
+        val selection = "$KEY_NAME = ? AND $KEY_PASSWORD = ?"
+
+        // selection arguments
+        val selectionArgs = arrayOf(ulogin, upassword)
+
+        // query user table with conditions
+        /**
+         * Here query function is used to fetch records from user table this function works like we use sql query.
+         * SQL query equivalent to this query function is
+         * SELECT user_id FROM user WHERE user_email = 'viral@exmaple.com' AND user_password = 'qwerty';
+         */
+        val cursor = db.query(TABLE_USERS, //Table to query
+                columns, //columns to return
+                selection, //columns for the WHERE clause
+                selectionArgs, //The values for the WHERE clause
+                null,  //group the rows
+                null, //filter by row groups
+                null) //The sort order
+
+        val cursorCount = cursor.count
+        cursor.close()
+        db.close()
+
+        if (cursorCount > 0)
+            return true
+
+        return false
+
+    }
 }
