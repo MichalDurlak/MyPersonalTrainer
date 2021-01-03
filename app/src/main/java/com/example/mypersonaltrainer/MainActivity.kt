@@ -7,15 +7,18 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import com.example.wsbzajecia2.UserDB
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
 
         super.onCreate(savedInstanceState)
 
@@ -42,10 +45,21 @@ class MainActivity : AppCompatActivity() {
                 val trueORfalseLogin = userDB.checkUser(loginInputTry,passwordInputTry)
 
                 if (trueORfalseLogin == true){
-                    val intent: Intent = Intent(applicationContext,HomePageActivity::class.java)
 
+//                    val intent: Intent = Intent(applicationContext,HomePageActivity::class.java)
+//
+//                    startActivity(intent)
+
+                    //
+
+                    val intent = Intent(this@MainActivity, HomePageActivity::class.java)
+                    val nameToWelcome = input_Login.text.toString()
+                    intent.putExtra("nameToWelcome_key", nameToWelcome)
                     startActivity(intent)
 
+
+
+                    //
 
                 } else {
 
@@ -64,6 +78,8 @@ class MainActivity : AppCompatActivity() {
 
 
             }
+
+
         }
 
     btn_Register.setOnClickListener(){
@@ -71,14 +87,17 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
 
+
+    }
+
+
+
+
+
+
     }
 
 
-
-
-
-
-    }
 
 
 

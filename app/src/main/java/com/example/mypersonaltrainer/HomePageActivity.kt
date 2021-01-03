@@ -5,14 +5,31 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
+
 import kotlinx.android.synthetic.main.activity_home_page.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.system.exitProcess
 
 class HomePageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_home_page)
+
+
+        val nameToWelcome = intent.getStringExtra("nameToWelcome_key")
+
+        val nameToWelcomeTextView: TextView = findViewById(R.id.txt_NameFromDatabase)
+        nameToWelcomeTextView.text = nameToWelcome.toString().capitalize()
+
+
+
+
+
 
         isUsingNightModeResources()
         if (isUsingNightModeResources() == true){
@@ -37,13 +54,13 @@ class HomePageActivity : AppCompatActivity() {
             btn_DayHomePage.setVisibility(View.GONE)
         }
 
-
-        btn_Logout.setOnClickListener(){
-            val intent: Intent = Intent(applicationContext,MainActivity::class.java)
-
-            startActivity(intent)
-
+        img_Exit.setOnClickListener(){
+            moveTaskToBack(true);
+            exitProcess(-1)
         }
+
+
+
     }
 
     private fun isUsingNightModeResources(): Boolean {
@@ -55,6 +72,9 @@ class HomePageActivity : AppCompatActivity() {
             else -> false
         }
     }
+
+
+
 
 
 

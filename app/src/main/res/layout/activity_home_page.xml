@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomePageActivity">
+    tools:context=".HomePageActivity"
+    android:orientation="vertical">
 
     <ImageButton
         android:id="@+id/btn_NightHomePage"
@@ -12,7 +13,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_nights_stay_24" />
+        app:srcCompat="@drawable/ic_baseline_nights_stay_24"
+        android:gravity="right"
+        android:layout_gravity="right"/>
 
     <ImageButton
         android:id="@+id/btn_DayHomePage"
@@ -22,25 +25,102 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
-        app:srcCompat="@drawable/ic_baseline_wb_sunny_24" />
+        app:srcCompat="@drawable/ic_baseline_wb_sunny_24"
+        android:gravity="right"
+        android:layout_gravity="right"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello My friend "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
 
-    <Button
-        android:id="@+id/btn_Logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="65dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_Hello"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Witaj "
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/txt_NameFromDatabase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textSize="30sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/img_challanges"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_baseline_follow_the_signs_120"
+
+                android:background="@drawable/imageview_border"
+                android:padding="30dp"
+                android:layout_margin="3dp"
+                />
+
+            <ImageView
+                android:id="@+id/img_getPlanTraining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_baseline_self_improvement_120"
+
+                android:background="@drawable/imageview_border"
+                android:padding="30dp"
+                android:layout_margin="3dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/img_updateProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_baseline_contact_page_120"
+
+                android:background="@drawable/imageview_border"
+                android:padding="30dp"
+                android:layout_margin="3dp"/>
+
+            <ImageView
+                android:id="@+id/img_Exit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_baseline_exit_to_app_120"
+
+                android:background="@drawable/imageview_border"
+                android:padding="30dp"
+                android:layout_margin="3dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
