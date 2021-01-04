@@ -13,15 +13,16 @@ class UserChallenges : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_challenges)
 
+        var userName : String = "null"
 
-        val userPoint = intent.getStringExtra("nameLogin_key")
+        userName = intent.getStringExtra("nameLogin_key").toString()
 
 
 //        val txt_PointsUserTextView: TextView = findViewById(R.id.txt_PointsUser)
 //        txt_PointsUserTextView.text = userPoint.toString().capitalize()
 
         val userDB: UserDB = UserDB(this)
-        txt_PointsUser.text = userDB.checkPointUser(userPoint.toString()).toString()
+        txt_PointsUser.text = userDB.checkPointUser(userName).toString()
 
 
 
@@ -29,8 +30,7 @@ class UserChallenges : AppCompatActivity() {
         btn_return.setOnClickListener(){
 
             val intent = Intent(this@UserChallenges, HomePageActivity::class.java)
-            val nameToWelcome = input_Login.text.toString()
-            intent.putExtra("nameLoginback_key", nameToWelcome)
+            intent.putExtra("nameLoginback_key", userName)
             startActivity(intent)
 
         }

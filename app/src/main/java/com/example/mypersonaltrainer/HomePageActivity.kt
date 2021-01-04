@@ -18,26 +18,41 @@ class HomePageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_home_page)
 
+        var userName : String = "null"
 
-        val nameToWelcome = intent.getStringExtra("nameToWelcome_key")
-        val tempnameToWelcome = intent.getStringExtra("nameLoginback_key")
+        if (userName.equals("null")){
+            userName = intent.getStringExtra("nameToWelcome_key").toString()
+
+            if (userName.equals("null")){
+                userName = intent.getStringExtra("nameLoginback_key").toString()
+            }
+
+        } else {
+            return
+
+        }
+
+//        if (userName.equals("null")){
+//            userName = intent.getStringExtra("nameToWelcome_key").toString()
+//
+//        }
+
+
+        txt_NameFromDatabase.text = userName.capitalize()
+
+
+
 
 //        val nameToWelcomeTextView: TextView = findViewById(R.id.txt_NameFromDatabase)
 //        nameToWelcomeTextView.text = nameToWelcome.toString().capitalize()
 
-        if (nameToWelcome.equals("null")){
-            txt_NameFromDatabase.text = tempnameToWelcome.toString().capitalize()
-        } else {
-            txt_NameFromDatabase.text = nameToWelcome.toString().capitalize()
-        }
 
 
 
         val userDB: UserDB = UserDB(this)
-        txt_Points2.text = userDB.checkPointUser(nameToWelcome.toString()).toString()
+        txt_Points2.text = userDB.checkPointUser(userName.toString()).toString()
 
 
 
@@ -76,8 +91,7 @@ class HomePageActivity : AppCompatActivity() {
 
         img_challanges.setOnClickListener(){
             val intent = Intent(this@HomePageActivity, UserChallenges::class.java)
-            val nameLogin = nameToWelcome.toString()
-            intent.putExtra("nameLogin_key", nameLogin)
+            intent.putExtra("nameLogin_key", userName)
             startActivity(intent)
 
 
