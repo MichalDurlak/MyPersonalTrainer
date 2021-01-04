@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import com.example.wsbzajecia2.UserDB
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_user_challenges.*
@@ -32,6 +33,16 @@ class UserChallenges : AppCompatActivity() {
             val intent = Intent(this@UserChallenges, HomePageActivity::class.java)
             intent.putExtra("nameLoginback_key", userName)
             startActivity(intent)
+
+        }
+
+
+
+        btn_taskOne.setOnClickListener(){
+            val userDB: UserDB = UserDB(this)
+            val test = userDB.searchForID("test")
+            Toast.makeText(applicationContext, "Test test " + test, Toast.LENGTH_LONG).show()
+
 
         }
 

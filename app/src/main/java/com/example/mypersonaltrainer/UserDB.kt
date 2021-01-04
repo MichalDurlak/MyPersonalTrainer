@@ -203,7 +203,23 @@ class UserDB(context : Context) :
                 return result
             }
         }
-        return 0
+        return -1
+    }
+
+    fun searchForID(ulogin: String) : Int{
+
+
+        val db = this.writableDatabase
+        val selectQuery = "SELECT  * FROM $TABLE_USERS WHERE $KEY_ID = ?"
+        db.rawQuery(selectQuery, arrayOf(ulogin)).use {
+            if (it.moveToFirst()) {
+                val result = it.getInt(it.getColumnIndex(KEY_POINT))
+                return result
+            }
+        }
+        return -1
+
+
     }
 
 }
