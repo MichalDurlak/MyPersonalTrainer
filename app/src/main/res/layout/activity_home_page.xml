@@ -38,26 +38,62 @@
         >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="65dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_marginBottom="45dp"
+            >
 
-            <TextView
-                android:id="@+id/txt_Hello"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Witaj "
-                android:textSize="30sp" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txt_NameFromDatabase"
-                android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/txt_Hello"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Witaj "
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/txt_NameFromDatabase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center"
+                >
 
-                android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/txt_Points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Points: "
+                    android:gravity="center"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/txt_Points2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

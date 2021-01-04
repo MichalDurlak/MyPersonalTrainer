@@ -92,6 +92,7 @@ class RegisterActivity : AppCompatActivity() {
         } else {
             usex = "Man"
         }
+        var upoint : Int = 0
 
 
 
@@ -99,7 +100,7 @@ class RegisterActivity : AppCompatActivity() {
 
         if (!uname.isEmpty() && !upassword.isEmpty() && !uemail.isEmpty() && !uage.isNullOrEmpty() && !uweight.isNullOrEmpty()){
             val status =
-                    userDB.addUser(UserModel(0,uname,upassword,uemail,uage,uweight,usex))
+                    userDB.addUser(UserModel(0,uname,upassword,uemail,uage,uweight,usex,upoint))
 
 
             if (status > -1){

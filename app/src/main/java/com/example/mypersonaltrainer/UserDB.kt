@@ -26,6 +26,7 @@ class UserDB(context : Context) :
         private const val KEY_AGE = "age"
         private const val KEY_WEIGHT = "weight"
         private const val KEY_SEX = "sex"
+        private const val KEY_POINT = "point"
 
     }
 
@@ -34,7 +35,7 @@ class UserDB(context : Context) :
         val CREATE_TABLE_USERS = ("CREATE TABLE " + TABLE_USERS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
                 + KEY_PASSWORD + " TEXT," + KEY_EMAIL + " TEXT,"
-                + KEY_AGE + " TEXT," + KEY_WEIGHT  + " TEXT," + KEY_SEX + " TEXT" + ")")
+                + KEY_AGE + " TEXT," + KEY_WEIGHT  + " TEXT," + KEY_SEX + " TEXT," + KEY_POINT + " INTEGER " + ")")
         db?.execSQL(CREATE_TABLE_USERS)
     }
 
@@ -58,6 +59,7 @@ class UserDB(context : Context) :
         contentValues.put(KEY_AGE, emp.uage)
         contentValues.put(KEY_WEIGHT, emp.uweight)
         contentValues.put(KEY_SEX, emp.usex)
+        contentValues.put(KEY_POINT, emp.upoint)
 
         val success = db.insert(TABLE_USERS,null,contentValues)
 
@@ -92,6 +94,7 @@ class UserDB(context : Context) :
         var uage: String
         var uweight: String
         var usex: String
+        var upoint: Int
 
         if (cursor.moveToFirst()){
             do {
@@ -102,8 +105,9 @@ class UserDB(context : Context) :
                 uage = cursor.getString(cursor.getColumnIndex(KEY_AGE))
                 uweight = cursor.getString(cursor.getColumnIndex(KEY_WEIGHT))
                 usex = cursor.getString(cursor.getColumnIndex(KEY_SEX))
+                upoint = cursor.getInt(cursor.getColumnIndex(KEY_POINT))
 
-                val user = UserModel(uid = uid, uname = uname, upassword = upassword, uemail = uemail, uage=uage, uweight = uweight, usex = usex)
+                val user = UserModel(uid = uid, uname = uname, upassword = upassword, uemail = uemail, uage=uage, uweight = uweight, usex = usex, upoint = upoint)
                 usersList.add(user)
 
             } while (cursor.moveToNext())
@@ -130,6 +134,7 @@ class UserDB(context : Context) :
         contentValues.put(KEY_AGE, emp.uage)
         contentValues.put(KEY_WEIGHT, emp.uweight)
         contentValues.put(KEY_SEX, emp.usex)
+        contentValues.put(KEY_POINT, emp.upoint)
 
         val success = db.update(TABLE_USERS, contentValues, KEY_ID + "=" + emp.uid, null)
 
@@ -187,6 +192,18 @@ class UserDB(context : Context) :
 
         return false
 
+    }
+
+    fun checkPointUser(ulogin: String): Int {
+        val db = this.writableDatabase
+        val selectQuery = "SELECT  * FROM $TABLE_USERS WHERE $KEY_POINT = ?"
+        db.rawQuery(selectQuery, arrayOf(ulogin)).use { // .use requires API 16
+            if (it.moveToFirst()) {
+                val result = it.getInt(it.getColumnIndex(KEY_POINT))
+                return result
+            }
+        }
+        return 0
     }
 
 }

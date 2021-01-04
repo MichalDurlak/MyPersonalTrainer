@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.wsbzajecia2.UserDB
 
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,9 +23,22 @@ class HomePageActivity : AppCompatActivity() {
 
 
         val nameToWelcome = intent.getStringExtra("nameToWelcome_key")
+        val tempnameToWelcome = intent.getStringExtra("nameLoginback_key")
 
-        val nameToWelcomeTextView: TextView = findViewById(R.id.txt_NameFromDatabase)
-        nameToWelcomeTextView.text = nameToWelcome.toString().capitalize()
+//        val nameToWelcomeTextView: TextView = findViewById(R.id.txt_NameFromDatabase)
+//        nameToWelcomeTextView.text = nameToWelcome.toString().capitalize()
+
+        if (nameToWelcome.equals("null")){
+            txt_NameFromDatabase.text = tempnameToWelcome.toString().capitalize()
+        } else {
+            txt_NameFromDatabase.text = nameToWelcome.toString().capitalize()
+        }
+
+
+
+        val userDB: UserDB = UserDB(this)
+        txt_Points2.text = userDB.checkPointUser(nameToWelcome.toString()).toString()
+
 
 
 
@@ -57,6 +71,16 @@ class HomePageActivity : AppCompatActivity() {
         img_Exit.setOnClickListener(){
             moveTaskToBack(true);
             exitProcess(-1)
+        }
+
+
+        img_challanges.setOnClickListener(){
+            val intent = Intent(this@HomePageActivity, UserChallenges::class.java)
+            val nameLogin = nameToWelcome.toString()
+            intent.putExtra("nameLogin_key", nameLogin)
+            startActivity(intent)
+
+
         }
 
 
