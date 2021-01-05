@@ -3,7 +3,6 @@ package com.example.mypersonaltrainer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 import android.widget.Toast
 import com.example.wsbzajecia2.UserDB
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,10 +39,24 @@ class UserChallenges : AppCompatActivity() {
 
         btn_taskOne.setOnClickListener(){
             val userDB: UserDB = UserDB(this)
-            val test = userDB.searchForID("test")
-            Toast.makeText(applicationContext, "Test test " + test, Toast.LENGTH_LONG).show()
+
+            val taskPoints = 100
+            val tempUserPoint = userDB.checkPointUser(userName).map{it.toInt()}
+            val userPointsAtTheMoment = tempUserPoint.sum()
+            val taskUpdatePoints = userPointsAtTheMoment+taskPoints
 
 
+            if (userDB.updatePoints(userName,taskUpdatePoints) == true){
+
+                Toast.makeText(applicationContext, "Points updated", Toast.LENGTH_LONG).show()
+
+            } else {
+
+                Toast.makeText(applicationContext, "Problem with update points", Toast.LENGTH_LONG).show()
+
+            }
+
+            txt_PointsUser.text = userDB.checkPointUser(userName).toString()
         }
 
 

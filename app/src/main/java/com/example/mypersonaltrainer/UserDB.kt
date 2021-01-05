@@ -7,7 +7,6 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import android.os.Build.USER
 import com.example.mypersonaltrainer.UserModel
 
 
@@ -194,16 +193,35 @@ class UserDB(context : Context) :
 
     }
 
-    fun checkPointUser(ulogin: String): Int {
-        val db = this.writableDatabase
-        val selectQuery = "SELECT  * FROM $TABLE_USERS WHERE $KEY_POINT = ?"
-        db.rawQuery(selectQuery, arrayOf(ulogin)).use { // .use requires API 16
-            if (it.moveToFirst()) {
-                val result = it.getInt(it.getColumnIndex(KEY_POINT))
-                return result
-            }
+
+    fun checkPointUser(ulogin: String): ArrayList<String> {
+        var pointGetted = ArrayList<String>()
+        val db = this.readableDatabase
+        var query = "SELECT " + UserDB.KEY_POINT + " FROM " + UserDB.TABLE_USERS + " WHERE " + UserDB.KEY_NAME + "='"+ulogin+"'"
+        val c = db.rawQuery(query,null)
+        while (c.moveToNext()){
+            pointGetted.add(c.getString(0))
         }
-        return -1
+        c.close()
+        return pointGetted
+        }
+
+    fun updatePoints(ulogin: String, upoint: Int): Boolean{
+
+        val db = this.writableDatabase
+        val contentValues = ContentValues().apply {
+            put(UserDB.KEY_POINT,upoint)
+        }
+
+        val selection = "${UserDB.KEY_NAME} LIKE ?"
+        val selectionArgs = arrayOf(ulogin)
+
+        db.update(UserDB.TABLE_USERS, contentValues, selection, selectionArgs)
+
+        db.close()
+
+
+        return true
     }
 
     fun searchForID(ulogin: String) : Int{
