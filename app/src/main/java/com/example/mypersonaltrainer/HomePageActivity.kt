@@ -12,6 +12,7 @@ import com.example.wsbzajecia2.UserDB
 
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlin.system.exitProcess
 
 class HomePageActivity : AppCompatActivity() {
@@ -61,7 +62,10 @@ class HomePageActivity : AppCompatActivity() {
 
 
         val userDB: UserDB = UserDB(this)
-        txt_Points2.text = userDB.checkPointUser(userName.toString()).toString()
+
+
+        val pointuser = userDB.checkPointUser(userName).map{it.toInt()}
+        txt_Points2.text = pointuser.sum().toString()
 
 
 

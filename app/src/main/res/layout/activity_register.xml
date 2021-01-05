@@ -94,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:text="Adres e-mail:" />
+            android:text="Address e-mail:" />
 
         <EditText
             android:id="@+id/input_RegisterEmail"
@@ -167,7 +167,7 @@
                 android:id="@+id/rdbWomen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kobieta"
+                android:text="Woman"
                 android:layout_margin="10dp"
                 android:checked="true"/>
 
@@ -175,7 +175,7 @@
                 android:id="@+id/rdmMen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mezczyzna"
+                android:text="Man"
                 android:layout_margin="10dp"/>
         </RadioGroup>
 

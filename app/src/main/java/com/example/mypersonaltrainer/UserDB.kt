@@ -240,4 +240,52 @@ class UserDB(context : Context) :
 
     }
 
+    fun checkWomanOrMan(ulogin: String): ArrayList<String> {
+        var WomanOrMan = ArrayList<String>()
+        val db = this.readableDatabase
+        var query = "SELECT " + UserDB.KEY_SEX + " FROM " + UserDB.TABLE_USERS + " WHERE " + UserDB.KEY_NAME + "='"+ulogin+"'"
+        val c = db.rawQuery(query,null)
+        while (c.moveToNext()){
+            WomanOrMan.add(c.getString(0))
+        }
+        c.close()
+        return WomanOrMan
+    }
+
+    fun checkAddressEmail(ulogin: String): ArrayList<String> {
+        var WomanOrMan = ArrayList<String>()
+        val db = this.readableDatabase
+        var query = "SELECT " + UserDB.KEY_EMAIL + " FROM " + UserDB.TABLE_USERS + " WHERE " + UserDB.KEY_NAME + "='"+ulogin+"'"
+        val c = db.rawQuery(query,null)
+        while (c.moveToNext()){
+            WomanOrMan.add(c.getString(0))
+        }
+        c.close()
+        return WomanOrMan
+    }
+
+    fun checkAge(ulogin: String): ArrayList<String> {
+        var WomanOrMan = ArrayList<String>()
+        val db = this.readableDatabase
+        var query = "SELECT " + UserDB.KEY_AGE + " FROM " + UserDB.TABLE_USERS + " WHERE " + UserDB.KEY_NAME + "='"+ulogin+"'"
+        val c = db.rawQuery(query,null)
+        while (c.moveToNext()){
+            WomanOrMan.add(c.getString(0))
+        }
+        c.close()
+        return WomanOrMan
+    }
+
+    fun checkWeight(ulogin: String): ArrayList<String> {
+        var weightUser = ArrayList<String>()
+        val db = this.readableDatabase
+        var query = "SELECT " + UserDB.KEY_WEIGHT + " FROM " + UserDB.TABLE_USERS + " WHERE " + UserDB.KEY_NAME + "='"+ulogin+"'"
+        val c = db.rawQuery(query,null)
+        while (c.moveToNext()){
+            weightUser.add(c.getString(0))
+        }
+        c.close()
+        return weightUser
+    }
+
 }
