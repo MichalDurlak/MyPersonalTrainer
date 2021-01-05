@@ -27,6 +27,15 @@ class HomePageActivity : AppCompatActivity() {
 
             if (userName.equals("null")){
                 userName = intent.getStringExtra("nameLoginback_key").toString()
+
+                if (userName.equals("null")){
+                    userName = intent.getStringExtra("nameLoginWorkoutback_key").toString()
+
+                    if (userName.equals("null")){
+                        userName = intent.getStringExtra("nameLoginMyProfileback_key").toString()
+                    }
+                }
+
             }
 
         } else {
@@ -96,6 +105,24 @@ class HomePageActivity : AppCompatActivity() {
 
 
         }
+
+        img_getPlanTraining.setOnClickListener(){
+            val intent = Intent(this@HomePageActivity, WorkoutPlans::class.java)
+            intent.putExtra("nameLoginWorkout_key", userName)
+            startActivity(intent)
+
+
+        }
+
+        img_updateProfile.setOnClickListener(){
+            val intent = Intent(this@HomePageActivity, MyProfile::class.java)
+            intent.putExtra("nameLoginMyProfile_key", userName)
+            startActivity(intent)
+
+
+        }
+
+
 
 
 

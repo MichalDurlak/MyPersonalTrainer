@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPersonalTrainer">
-        <activity android:name=".UserChallenges"></activity>
+        <activity android:name=".MyProfile"></activity>
+        <activity android:name=".WorkoutPlans" />
+        <activity android:name=".UserChallenges" />
         <activity android:name=".SidebarHomePage" />
         <activity android:name=".HomePageActivity" />
         <activity android:name=".HomePage" />
