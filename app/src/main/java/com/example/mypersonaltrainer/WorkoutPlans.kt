@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.wsbzajecia2.UserDB
 
 import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.activity_user_challenges.*
@@ -33,13 +34,32 @@ class WorkoutPlans : AppCompatActivity() {
 
         btn_randomWorkoutPlan.setOnClickListener(){
 
-            val myFragment = workoutPlansContent()
+            val userDB: UserDB = UserDB(this)
+            val WomanOrMan = userDB.checkWomanOrMan(userName).joinToString()
 
-            val manager = supportFragmentManager
 
-            val transaction = manager.beginTransaction()
-            transaction.replace(R.id.fragmentContainer,myFragment)
-            transaction.commit()
+            if (WomanOrMan.equals("Woman")){
+                val myFragment = WorkoutPlansContentwoman()
+
+                val manager = supportFragmentManager
+
+                val transaction = manager.beginTransaction()
+                transaction.replace(R.id.fragmentContainer,myFragment)
+                transaction.commit()
+
+            } else if (WomanOrMan.equals("Man")){
+                val myFragment = WorkoutPlansContentMan()
+
+                val manager = supportFragmentManager
+
+                val transaction = manager.beginTransaction()
+                transaction.replace(R.id.fragmentContainer,myFragment)
+                transaction.commit()
+            } else {
+
+            }
+
+
 
 //            visable_fragment.setVisibility((View.VISIBLE))
 
